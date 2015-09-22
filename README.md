@@ -129,13 +129,13 @@ The nodes table will contain all the semantic, conceptual and actor information.
 The table "node_relations" provides a place to store information about the relationships between the nodes. In the example DB below the `semantic_id` refers to line `9` which stands for "measurements/km".
 Thus each and every line below represent some kind of measurement in kilometers.
 
-The `source_id` refers here to the user which has the semantic information. 
+`source_id` refers here to the user which has the semantic information. 
 
-The `source_class_id` refers to the role in which he performed this, in this case `8` is "harjoittelija" which means trainer in Finnish language.
+`source_class_id` refers to the role in which he performed this, in this case `8` is "harjoittelija" which means trainer in Finnish language.
 
-The `target_id` means the target of the semantics, the line 10 in nodes ferers to "treeni", which means "training". This is important to distinguish it from let's say a planned training. Of course it is up to the application to decide the eventual meaning of the semantics.
+`target_id` means the target of the semantics, the line 10 in nodes ferers to "treeni", which means "training". This is important to distinguish it from let's say a planned training. Of course it is up to the application to decide the eventual meaning of the semantics.
 
-The `target_class_id` referes to the "role" in which the target was, in this case it means the type of the exercise or movement. The numbers 11 and 13 refer to running and walking.
+`target_class_id` referes to the "role" in which the target was, in this case it means the type of the exercise or movement. The numbers 11 and 13 refer to running and walking.
 
 `time_start` and `time_end` can be used to limit the queries to certain timeframe. This will be useful, when creating statistics.
 
