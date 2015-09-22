@@ -86,9 +86,7 @@ The current implementation has function `graph.relation` which takes for argumen
 3. `values` Values to be inserted, start end end time optional
 4. `target` Target node name, type and role of traget node, for example `"actions/training/walking"`
 
-The curren interface is very simple and should be created in much more object oriented way.
-
-At the moment it acts as a testbench for creating some kind of information which could be statistically analyzed.
+Example:
 
 ```javascript
 
@@ -102,6 +100,19 @@ graph.relation( "users/matti/harjoittelija", // who: class/username/role
 });
 
 ```
+
+Internally the system will find node in class "users" and name "matti". Then it will find a semantic node with class "model/roles" and name "harjoittelija" and attach that into the relationship as the role of the user.
+
+Then it will find semantic node with class "measurement" and name "km" and add that node as the semantic_id for the relationship.
+
+The value for the relationship - or edge - will be "5.3" representing kilometers run.
+
+The system will then find the target node of class "actions" and name "treeni", this will be the target_id.
+
+It will also look for a node "model/roles" which name is "walking" and attach that as target_class_id.
+
+Optionally could have been given `start` and `end` properties for the value object to represent the start and end times of the excercise.
+
 
 ## Calculating sum of the semantic relationship
 
