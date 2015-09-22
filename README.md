@@ -81,7 +81,7 @@ graph.relation( "users/matti/harjoittelija", // who: class/username/role
 
 The current implementation has function `graph.relation` which takes for arguments:
 
-1. `who` User name and type and the role in which the user currently is, for example `"user/john/trainer`.
+1. `who` User name and type and the role in which the user currently is, for example `"user/john/trainer"`.
 2. `semantics` Semantics for the relationship, for example `"measurement/meters"`
 3. `values` Values to be inserted, start end end time optional
 4. `target` Target node name, type and role of traget node, for example `"actions/training/walking"`
