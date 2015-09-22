@@ -59,10 +59,11 @@ Then require the gground, which will load the setup:
 var gground = require("./gground.js");
 var graph = gground.gg();
 
-graph.relation( "users/matti/harjoittelija", 
-               "measurements/km", {
+graph.relation( "users/matti/harjoittelija", // who: class/username/role
+                "measurements/km",           // semantics: class/name
+                {                            // data to be inserted (optional start,end time)
                       value : 5.3
-                }, "actions/treeni/walking")
+                }, "actions/treeni/walking") // target: where to link this data to
 .then( function() {
    graph.sumsOf("users/matti/harjoittelija",
       "measurements/km",{},"actions/treeni/walking").then(
