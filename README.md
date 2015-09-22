@@ -92,10 +92,11 @@ At the moment it acts as a testbench for creating some kind of information which
 
 ```javascript
 
-graph.relation( "user/john/trainer", 
-                "measurements/meters", {
-                      value : 2500
-                }, "actions/training/walking")
+graph.relation( "users/matti/harjoittelija", // who: class/username/role
+                "measurements/km",           // semantics: class/name
+                {                            // data to be inserted (optional start,end time)
+                      value : 5.3
+                }, "actions/treeni/walking") // target: where to link this data to
 .then( function() {
    // The user john has now recorded 2500 meters of walking
 });
@@ -110,9 +111,10 @@ However, it is not "simple" in a way that it will find out all the semantic clas
 
 ```javascript
 
-graph.sumsOf( "user/john/trainer", 
-                "measurements/meters", {
-                }, "actions/training/walking")
+graph.sumsOf(   "user/john/trainer",        // who
+                "measurements/meters",      // nature of relationship
+                {},                         // limits (not implemented yet)
+                "actions/training/walking") // target
 .then( function(sum) {
     console.log("The total walking sum is ", sum, " meters ");
 });
