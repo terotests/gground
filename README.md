@@ -62,6 +62,10 @@ The relationship has four parts:
 3. Values to be inserted, start end end time optional
 4. Target node name, type and role of traget node, for example `"actions/training/walking"`
 
+The curren interface is very simple and should be created in much more object oriented way.
+
+At the moment it acts as a testbench for creating some kind of information which could be statistically analyzed.
+
 ```javascript
 
 graph.relation( "user/john/trainer", 
@@ -87,6 +91,15 @@ graph.sumsOf( "user/john/trainer",
 });
 
 ```
+
+## More advanced statistics?
+
+At the moment, creating more advanced statistics is left as an exercise to the reader.
+
+However, if you get familiar with the database structure, it is quite easy to notice that creating queries to the database is relatively easy.
+
+For example, if you need to find out every node for certain object you only need to specify `source_id` and `semantic_id` to find out certain kind of information about some object.
+There are many ways to combine the filters and more advanced examples should be built in the future.
 
 ## DB Structure example
 
@@ -527,23 +540,8 @@ this._dbRelationJournal.sync();
         
 ### <a name="gg_nodeInRole"></a>gg::nodeInRole(nodeClass, nodeRoleClass, nodeRole)
 
-
+This function is currently not used for anything - in the future it could be used to ease up inserting certain kind of data in object oriented way.
 ```javascript
-
-/*
-
-// --> saving something to the database
-"user/matti/harjoittelija", "measurement/km", {
-    start : 
-    end   : 
-    value : 
-}, "action/treeni/juoksu"
-
-
-this.createClass( nodeClass ).then( function() {
-    
-});
-*/
 
 var user,
     role,
@@ -564,7 +562,7 @@ return new Promise(
 
 ### <a name="gg_relation"></a>gg::relation(who, semantics, values, target)
 
-
+A very simple interface for adding semantical information into database
 ```javascript
 
 var who_parts = who.split("/");         // users/matti/harjoittelija

@@ -566,22 +566,12 @@
       });
 
       /**
+       * This function is currently not used for anything - in the future it could be used to ease up inserting certain kind of data in object oriented way.
        * @param String nodeClass
        * @param String nodeRoleClass
        * @param float nodeRole
        */
       _myTrait_.nodeInRole = function (nodeClass, nodeRoleClass, nodeRole) {
-
-        /*
-        // --> saving something to the database
-        "user/matti/harjoittelija", "measurement/km", {
-        start : 
-        end   : 
-        value : 
-        }, "action/treeni/juoksu"
-        this.createClass( nodeClass ).then( function() {
-        });
-        */
 
         var user,
             role,
@@ -600,6 +590,7 @@
       };
 
       /**
+       * A very simple interface for adding semantical information into database
        * @param String who
        * @param String semantics
        * @param Object values
