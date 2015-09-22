@@ -1,4 +1,4 @@
-# gground - Semantical graph and statistics tool
+# gground - Semantical statistics tool
 
 A test of SQL database working as graph database with fat edges to speed up collecting useful statistics from semantically classified data.
 
