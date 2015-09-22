@@ -658,36 +658,6 @@ return new Promise(
         })
     });
 
-/*
-
-// --> saving something to the database
-"user/matti/harjoittelija", "measurement/km", {
-    start : 
-    end   : 
-    value : 
-}, "action/treeni/juoksu"
-
-
-this.createClass( nodeClass ).then( function() {
-    
-});
-*/
-
-/*
-this._dbRelation.create( {
-  id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true},
-  source_id: { type: Sequelize.INTEGER},
-  source_class_id : { type: Sequelize.INTEGER},
-  semantic_id: { type: Sequelize.INTEGER},
-  time_start: { type: Sequelize.DATE},
-  time_end    : { type: Sequelize.DATE},
-  double_value : { type: Sequelize.FLOAT},
-  decimal_value : { type: Sequelize.DECIMAL},
-  target_id : { type: Sequelize.INTEGER},
-  target_class_id : { type: Sequelize.INTEGER}
-},{
-*/
-
 ```
 
 ### <a name="gg_sumsOf"></a>gg::sumsOf(who, semantics, limits, target)
