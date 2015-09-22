@@ -74,14 +74,16 @@ graph.relation( "users/matti/harjoittelija",
 
 ```
 
-## Creating a semantic realationship
+## Creating a semantic relationships
 
-The relationship has four parts:
+`NOTE: this is just an example made for testing purposes - there are many other ways of defining relationships`
 
-1. User name and type and the role in which the user currently is, for example `"user/john/trainer`.
-2. Semantics for the relationship, for example `"measurement/meters"`
-3. Values to be inserted, start end end time optional
-4. Target node name, type and role of traget node, for example `"actions/training/walking"`
+The current implementation has function `graph.relation` which takes for arguments:
+
+1. `who` User name and type and the role in which the user currently is, for example `"user/john/trainer`.
+2. `semantics` Semantics for the relationship, for example `"measurement/meters"`
+3. `values` Values to be inserted, start end end time optional
+4. `target` Target node name, type and role of traget node, for example `"actions/training/walking"`
 
 The curren interface is very simple and should be created in much more object oriented way.
 
