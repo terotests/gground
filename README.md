@@ -1,6 +1,24 @@
-# gground - graph and statistics tool
+# gground - Semantical graph and statistics tool
 
 A test of SQL database working as graph database with fat edges to speed up collecting useful statistics from semantically classified data.
+
+## What is semantic data?
+
+If there exists a system, like a medical data collection and measurement system, it consists of various ways of linking and representing the data.
+
+It may not be possible to create a traditional SQL model, which represents all the ways this data and collects statistical information about it. As the number of tables increases, 
+the database schema may become very complex and the queries to create statistics will be difficult to maintain.
+
+Representing the data only as graph - or as `vertices` and `edges` - will make the schema much simpler. The problem is, however, that the edges do not usually carry any semantic information with them. This means that even if you have a relationship between node A and node B you do not know when it was created, who created it, why it was created and what is it trying to say.
+
+The gground tries to solve this problem by adding some semantic information into the edges of the graph, essentially creating what I call "fat edges". 
+
+The fat edge is not only linking two nodes, but also describes the roles of the endpoints and gives a hint about the semantics of the relationship, including numerical and time information, which is often required in medical measurements.
+
+Having said that, it can serve also as a traditional graph. 
+
+In the end, this is an experiment to find out how much real-world relationships could be solved using a rather simple method of overloading edges.
+
 
 ## Setup
 
