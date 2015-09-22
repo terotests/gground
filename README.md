@@ -101,6 +101,9 @@ graph.relation( "user/john/trainer",
 
 ## Calculating sum of the semantic relationship
 
+There are many ways of calculating the sums or creating queries of the semantic relationships. Currently only one simple way of summing has been implemented for testing purposes.
+
+However, it is not "simple" in a way that it will find out all the semantic classes required to find out exactly this one relationship sum. A bit more relaxed query could easily find out for example the total number of kilometers done by all the users in this database.
 
 ```javascript
 
@@ -112,6 +115,11 @@ graph.sumsOf( "user/john/trainer",
 });
 
 ```
+
+The limitation of the edges is of course that this kind of queries are available only for existing edges and there is no relational model to allow table joins.
+
+To create new statistics out of this simple statistical information one could create new edges into this or another database. For example, if "john" belonged to certain group of users and we are only interested in statistics concerning that group, one could create new edges with the same information but pointing to this new class.
+
 
 ## More advanced statistics?
 
