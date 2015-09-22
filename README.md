@@ -4,9 +4,12 @@ A test of SQL database working as graph database with fat edges to speed up coll
 
 ## What is semantic data?
 
-If there exists a system, like a medical data collection and measurement system, it consists of various ways of linking and representing the data.
+If there exists a system, like a medical data collection and measurement system, it consists of various ways of linking and representing the data. This data is usually expressed in a form like
 
-It may not be possible to create a traditional SQL model, which represents all the ways this data and collects statistical information about it. As the number of tables increases, 
+1. `Matthew went to doctor a tuesday, the doctor was Mary Williams`
+2. `Matthew was prescribed one or two tablets of drug XYZ to take three times a day`
+
+It may  be possible to create a traditional SQL model, which represents all the ways this data and collects statistical information about it. As the number of tables increases, 
 the database schema may become very complex and the queries to create statistics will be difficult to maintain.
 
 Representing the data only as graph - or as `vertices` and `edges` - will make the schema much simpler. The problem is, however, that the edges do not usually carry any semantic information with them. This means that even if you have a relationship between node A and node B you do not know when it was created, who created it, why it was created and what is it trying to say.
