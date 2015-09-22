@@ -116,7 +116,7 @@ graph.sumsOf( "user/john/trainer",
 
 ```
 
-The limitation of the edges is of course that this kind of queries are available only for existing edges and there is no relational model to allow table joins.
+The limitation of the edges is of course that this kind of queries are available only for existing edges and there is no immediately available relational model to allow table joins.
 
 To create new statistics out of this simple statistical information one could create new edges into this or another database. For example, if "john" belonged to certain group of users and we are only interested in statistics concerning that group, one could create new edges with the same information but pointing to this new class.
 
