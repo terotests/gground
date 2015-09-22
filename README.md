@@ -12,7 +12,7 @@ If there exists a system, like a medical data collection and measurement system,
 It may  be possible to create a traditional SQL model, which represents all the ways this data and collects statistical information about it. As the number of tables increases, 
 the database schema may become very complex and the queries to create statistics will be difficult to maintain.
 
-Representing the data only as graph - or as `vertices` and `edges` - will make the schema much simpler. The problem is, however, that the edges do not usually carry any semantic information with them. This means that even if you have a relationship between node A and node B you do not know when it was created, who created it, why it was created and what is it trying to say.
+Representing the data only as graph - or as `vertices` and `edges` - will make the schema much simpler. The problem is, however, that the edges do not usually carry any semantic information with them. This means that even if you have a relationship between node A and node B you do not know when it was created, who created it, why it was created and what this relationship is trying to say.
 
 The gground tries to solve this problem by adding some semantic information into the edges of the graph, essentially creating what I call "fat edges". 
 
