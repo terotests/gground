@@ -75,7 +75,7 @@ graph.relation( "users/matti/harjoittelija", // who: class/username/role
 
 ```
 
-## Creating a semantic relationships
+## Creating semantic relationships
 
 *NOTE: this is just an example made for testing purposes - there are many other ways of defining relationships and in the future this should be more object-oriented.*
 
