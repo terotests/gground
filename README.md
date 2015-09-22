@@ -1,5 +1,6 @@
 # gground - graph and statistics tool
 
+A test of SQL database working as graph database with fat edges to speed up collecting useful statistics from semantically classified data.
 
 ## Setup
 
@@ -87,6 +88,79 @@ graph.sumsOf( "user/john/trainer",
 
 ```
 
+## DB Structure example
+
+It is perhaps eassier to understand the DB model from a real example
+
+### nodes
+
+The nodes table will contain all the semantic, conceptual and actor information. The purpose is to provide unique ID for each element in the system.
+
+```
++----+---------------------+---------------------+---------+---------+---------+----------+---------------------+-------+---------------+------------+----------+
+| id | created             | updated             | creator | updater | orderid | parentid | classname           | objid | name          | draftspace | archived |
++----+---------------------+---------------------+---------+---------+---------+----------+---------------------+-------+---------------+------------+----------+
+|  6 | 2015-09-22 11:49:54 | 2015-09-22 11:49:54 |       1 |       1 |    NULL |        0 | /model/classes      |     0 | user          |          0 |        0 |
+|  7 | 2015-09-22 13:02:21 | 2015-09-22 13:02:21 |       1 |       1 |    NULL |        0 | /model/users        |     0 | matti         |          0 |        0 |
+|  8 | 2015-09-22 13:02:21 | 2015-09-22 13:02:21 |       1 |       1 |    NULL |        0 | /model/roles        |     0 | harjoittelija |          0 |        0 |
+|  9 | 2015-09-22 13:02:21 | 2015-09-22 13:02:21 |       1 |       1 |    NULL |        0 | /model/measurements |     0 | km            |          0 |        0 |
+| 10 | 2015-09-22 13:02:21 | 2015-09-22 13:02:21 |       1 |       1 |    NULL |        0 | /model/actions      |     0 | treeni        |          0 |        0 |
+| 11 | 2015-09-22 13:02:21 | 2015-09-22 13:02:21 |       1 |       1 |    NULL |        0 | /model/roles        |     0 | juoksu        |          0 |        0 |
+| 12 | 2015-09-22 13:36:26 | 2015-09-22 13:36:26 |       1 |       1 |    NULL |        0 | /model/users        |     0 | heikki        |          0 |        0 |
+| 13 | 2015-09-22 13:37:15 | 2015-09-22 13:37:15 |       1 |       1 |    NULL |        0 | /model/roles        |     0 | walking       |          0 |        0 |
++----+---------------------+---------------------+---------+---------+---------+----------+---------------------+-------+---------------+------------+----------+
+```
+
+### node_relations
+
+The table "node_relations" provides a place to store information about the relationships between the nodes. In the example DB below the `semantic_id` refers to line `9` which stands for "measurements/km".
+Thus each and every line below represent some kind of measurement in kilometers.
+
+The `source_id` refers here to the user which has the semantic information. 
+
+The `source_class_id` refers to the role in which he performed this, in this case `8` is "harjoittelija" which means trainer in Finnish language.
+
+The `target_id` means the target of the semantics, the line 10 in nodes ferers to "treeni", which means "training". This is important to distinguish it from let's say a planned training. Of course it is up to the application to decide the eventual meaning of the semantics.
+
+The `target_class_id` referes to the "role" in which the target was, in this case it means the type of the exercise or movement. The numbers 11 and 13 refer to running and walking.
+
+`time_start` and `time_end` can be used to limit the queries to certain timeframe. This will be useful, when creating statistics.
+
+`double_value` and `decimal_value` are two different ways of representing the numbers. In this example it may be flawed, but it doesn't matter at this point, the purpose of this database is to act as conceptual training anyway.
+
+```
+mysql> select * from node_relations;
++----+-----------+-----------------+-------------+---------------------+---------------------+--------------+---------------+-----------+-----------------+
+| id | source_id | source_class_id | semantic_id | time_start          | time_end            | double_value | decimal_value | target_id | target_class_id |
++----+-----------+-----------------+-------------+---------------------+---------------------+--------------+---------------+-----------+-----------------+
+|  1 |         7 |               8 |           9 | 2015-09-22 13:02:21 | 2015-09-22 13:02:21 |           10 |            10 |        10 |              11 |
+|  2 |         7 |               8 |           9 | 2015-09-22 13:21:06 | 2015-09-22 13:21:06 |           10 |            10 |        10 |              11 |
+|  3 |         7 |               8 |           9 | 2015-09-22 13:21:21 | 2015-09-22 13:21:21 |           10 |            10 |        10 |              11 |
+|  4 |         7 |               8 |           9 | 2015-09-22 13:21:23 | 2015-09-22 13:21:23 |           10 |            10 |        10 |              11 |
+|  5 |         7 |               8 |           9 | 2015-09-22 13:32:32 | 2015-09-22 13:32:32 |           10 |            10 |        10 |              11 |
+|  6 |         7 |               8 |           9 | 2015-09-22 13:33:23 | 2015-09-22 13:33:23 |           10 |            10 |        10 |              11 |
+|  7 |         7 |               8 |           9 | 2015-09-22 13:33:45 | 2015-09-22 13:33:45 |           10 |            10 |        10 |              11 |
+|  8 |         7 |               8 |           9 | 2015-09-22 13:33:48 | 2015-09-22 13:33:48 |           10 |            10 |        10 |              11 |
+|  9 |         7 |               8 |           9 | 2015-09-22 13:34:02 | 2015-09-22 13:34:02 |           10 |            10 |        10 |              11 |
+| 10 |         7 |               8 |           9 | 2015-09-22 13:34:05 | 2015-09-22 13:34:05 |           10 |            10 |        10 |              11 |
+| 11 |         7 |               8 |           9 | 2015-09-22 13:35:54 | 2015-09-22 13:35:54 |           10 |            10 |        10 |              11 |
+| 12 |         7 |               8 |           9 | 2015-09-22 13:36:02 | 2015-09-22 13:36:02 |           10 |            10 |        10 |              11 |
+| 13 |        12 |               8 |           9 | 2015-09-22 13:36:26 | 2015-09-22 13:36:26 |           10 |            10 |        10 |              11 |
+| 14 |        12 |               8 |           9 | 2015-09-22 13:36:28 | 2015-09-22 13:36:28 |           10 |            10 |        10 |              11 |
+| 15 |        12 |               8 |           9 | 2015-09-22 13:36:43 | 2015-09-22 13:36:43 |           10 |            10 |        10 |              11 |
+| 16 |         7 |               8 |           9 | 2015-09-22 13:37:15 | 2015-09-22 13:37:15 |           10 |            10 |        10 |              13 |
+| 17 |         7 |               8 |           9 | 2015-09-22 13:37:25 | 2015-09-22 13:37:25 |          3.4 |             3 |        10 |              13 |
+| 18 |         7 |               8 |           9 | 2015-09-22 13:37:27 | 2015-09-22 13:37:27 |          3.4 |             3 |        10 |              13 |
+| 19 |         7 |               8 |           9 | 2015-09-22 13:37:40 | 2015-09-22 13:37:40 |          3.4 |             3 |        10 |              13 |
+| 20 |         7 |               8 |           9 | 2015-09-22 13:37:47 | 2015-09-22 13:37:47 |          3.4 |             3 |        10 |              13 |
+| 21 |         7 |               8 |           9 | 2015-09-22 13:46:39 | 2015-09-22 13:46:39 |          3.4 |             3 |        10 |              13 |
+| 22 |         7 |               8 |           9 | 2015-09-22 13:50:30 | 2015-09-22 13:50:30 |          3.4 |             3 |        10 |              13 |
+| 23 |         7 |               8 |           9 | 2015-09-22 13:50:32 | 2015-09-22 13:50:32 |          3.4 |             3 |        10 |              13 |
+| 24 |         7 |               8 |           9 | 2015-09-22 13:52:27 | 2015-09-22 13:52:27 |          3.4 |             3 |        10 |              13 |
+| 25 |         7 |               8 |           9 | 2015-09-22 13:59:20 | 2015-09-22 13:59:20 |          3.4 |             3 |        10 |              13 |
+| 26 |         7 |               8 |           9 | 2015-09-22 13:59:23 | 2015-09-22 13:59:23 |          3.4 |             3 |        10 |              13 |
++----+-----------+-----------------+-------------+---------------------+---------------------+--------------+---------------+-----------+-----------------+
+```
 
 
 
